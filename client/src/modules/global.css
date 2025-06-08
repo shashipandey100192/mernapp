@@ -1,0 +1,30 @@
+  .dome-card {
+    border: none;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0 0 10px teal;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    float:left;
+    margin-left:20px;
+    margin-top:20px;
+    transition-duration: 200ms;
+  }
+  .dome-card img {
+    border-top-left-radius: 10em;
+    border-top-right-radius: 10em;
+  }
+  .dome-card .btn {
+    width: 100%;
+    background-color: teal;
+    border-color: teal;
+    border-radius: 0;
+  }
+  .dome-card:hover
+  {
+    box-shadow: 0 0 20px teal;
+    transform: scale(1.2,1.2);
+    transition-duration: 200ms;
+    z-index: 1;
+  }
