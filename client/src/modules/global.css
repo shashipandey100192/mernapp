@@ -7,7 +7,7 @@
     width: 200px;
     height: 200px;
     float:left;
-    margin-left:20px;
+    margin-left:50px;
     margin-top:20px;
     transition-duration: 200ms;
   }
@@ -28,3 +28,25 @@
     transition-duration: 200ms;
     z-index: 1;
   }
+  .dome-card h1{
+    font-size: 80px;
+  }
+
+  /* for login page*/
+  .abc {
+  background: linear-gradient(to right, #00b4db, #0083b0);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+}
+
+/*end user login*/

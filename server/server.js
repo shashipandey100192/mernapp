@@ -1,6 +1,6 @@
 const express = require('express');
-
 require("dotenv").config();
+require('./database/connection');
 const port = process.env.PORT || 8000
 
 

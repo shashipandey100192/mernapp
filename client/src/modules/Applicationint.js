@@ -1,4 +1,7 @@
 import React, { Fragment } from 'react'
+import { FcBusinessman } from "react-icons/fc";
+import { FaUsers } from "react-icons/fa6";
+import {Link} from "react-router-dom"
 
 function Applicationint() {
     return (
@@ -25,53 +28,24 @@ function Applicationint() {
             <section id="home" class="py-5 text-center bg-light">
                 <div class="container">
                     <h1 class="display-4">Welcome to MyApp!</h1>
-                    <p class="lead">All-in-one solution for your web needs.</p>
-                    <a href="#features" class="btn btn-primary btn-lg">Explore Features</a>
                 </div>
             </section>
 
             <div className='container'>
-                <div className='row'>
-                    <div class="card dome-card">
+                <div className='row justify-content-center'>
+                    <Link class="card dome-card col-md-2" to="userlogin">
                         <div class="card-body">
-                            <h5 class="card-title fw-bold">Payment</h5>
+                            <h1><FcBusinessman/></h1>
+                            <h5 class="card-title fw-bold">User Login</h5>
                         </div>
-                    </div>
-                    <div class="card dome-card">
+                    </Link>
+                    <Link class="card dome-card col-md-2" to="adminlogin">
                         <div class="card-body">
-                            <h5 class="card-title fw-bold">Payment</h5>
+                            <h1><FaUsers/></h1>
+                            <h5 class="card-title fw-bold">Admin</h5>
                         </div>
-                    </div>
-                    <div class="card dome-card">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Payment</h5>
-                        </div>
-                    </div>
-                    <div class="card dome-card">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Payment</h5>
-                        </div>
-                    </div>
-                    <div class="card dome-card">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Payment</h5>
-                        </div>
-                    </div>
-                    <div class="card dome-card">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Payment</h5>
-                        </div>
-                    </div>
-                    <div class="card dome-card">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Payment</h5>
-                        </div>
-                    </div>
-                    <div class="card dome-card">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Payment</h5>
-                        </div>
-                    </div>
+                    </Link>
+                    
                 </div>
             </div>
 
