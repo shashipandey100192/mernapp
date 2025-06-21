@@ -31,9 +31,22 @@ myapp.get("/",(req,res)=>{
         // console.log(postdata);
 
             }
+    });
 
-       
-    })
+    myapp.get("/allemplist", async(req,res)=>{
+        const allemp = await mydatapattern.find();
+         res.status(200).json({allemp:allemp,status:220,message:"all emp list"});
+        console.log(allemp);
+    });
+
+
+
+
+
+
+
+
+
 
 
 
