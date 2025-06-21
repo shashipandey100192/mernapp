@@ -1,3 +1,4 @@
+'Access-Control-Allow-Origin'
 const express = require('express');
 const cors = require('cors');
 require("dotenv").config();
@@ -8,10 +9,10 @@ const myapp = express();
 const myrouter = require('./routing/myrouter');
 
 
-    
+myapp.use(cors());    
 myapp.use(express.json());
 myapp.use(myrouter);
-myapp.use(cors);
+
 
 
 

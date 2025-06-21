@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import {useNavigate} from 'react-router-dom'
+
 
 function UserRegistorpage() {
+  const navigation = useNavigate()
 
 const [user,setuser]=useState({
   fullname:"",
@@ -27,9 +31,34 @@ const [user,setuser]=useState({
 
 
 
-const registor = ()=>{
-  console.log(user);
-}
+const registor = async(req,res)=>{
+    if(user.fullname==="")
+    {
+      toast.error("username is blank",{position: "top-left",autoClose: 1000});
+    }
+    else
+    {
+  const {fullname,email,phone,pass,dob,profile}=user;
+const postdata = await fetch("http://localhost:8700/registorpage", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                 fullname,email,phone,pass,dob,profile
+            })
+        })
+        const data = await postdata.json();
+        console.log(data.status);
+        if(data.status===255)
+        {
+          toast.success("successfully registor user",{position: "top-left",autoClose: 2000});
+          setTimeout(()=>{
+            navigation("/userlogin");
+          },2000)
+        }
+      }
+
+      }
+
 
 
 
@@ -46,6 +75,7 @@ const registor = ()=>{
             <div className='row'>
               <div className='col-12 text-center'>
                 <h3>User Registor Page</h3>
+                <ToastContainer />
                 <hr/>
               </div>
               <div className='col-md-6'>

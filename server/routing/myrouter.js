@@ -1,3 +1,4 @@
+'Access-Control-Allow-Origin'
 const express  = require('express');
 const mydatapattern = require('../schimas/myschima');
 
@@ -16,15 +17,22 @@ myapp.get("/",(req,res)=>{
 
     myapp.post("/registorpage", async (req,res)=>{
         const {fullname,email,phone,dob,pass,profile} = req.body;
-
-        const postdata = new mydatapattern({
+            if(fullname=="" || email=="")
+            {
+                res.status(200).json({data:postdata,status:288,message:"faild registor"});
+            }
+            else
+            {
+            const postdata = new mydatapattern({
             fullname,email,phone,dob,pass,profile
         });
         await postdata.save();
-        res.status(200).json(postdata);
-        console.log(postdata);
-       
+        res.status(200).json({data:postdata,status:255,message:"data registor successfully"});
+        // console.log(postdata);
 
+            }
+
+       
     })
 
 
