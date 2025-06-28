@@ -3,6 +3,7 @@ import axios from 'axios';
 import { MdOutlinePreview, MdDeleteForever } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 
 function Employlistpage() {
@@ -23,21 +24,19 @@ function Employlistpage() {
 
 
     const deleterecord = (id) => {
-        if (window.confirm("do you wnat to delete")) 
-            {
+        if (window.confirm("do you wnat to delete")) {
             axios.delete(`http://localhost:8700/deleterecord/${id}`).then((d) => {
                 console.log(d);
                 toast.success("record delete successfully");
                 myallemp();
             });
         }
-        else
-        {
+        else {
             toast.warn("Thanks");
         }
-
-
     }
+
+
 
 
 
@@ -77,8 +76,8 @@ function Employlistpage() {
                                         </td>
                                         <td>{emp.phone}</td>
                                         <td>
-                                            <span class="badge text-bg-primary code-i"><MdOutlinePreview /></span>
-                                            <span class="badge text-bg-warning ms-2 code-i"><FaUserEdit /></span>
+                                            <Link to={'profile/'+emp._id} class="badge text-bg-primary code-i"><MdOutlinePreview /></Link>
+                                            <Link to={'edituser/'+emp._id} class="badge text-bg-warning ms-2 code-i"><FaUserEdit /></Link>
                                             <span class="badge text-bg-danger ms-2 code-i" onClick={() => deleterecord(emp._id)}><MdDeleteForever /></span>
 
                                         </td>

@@ -41,6 +41,16 @@ const myloginapi = async()=>{
                 navigat("/dashboard");
               },2000)
           }
+          if(resdata===420)
+          {
+              toast.warning("username not exiting",{autoClose:2000});
+          }
+          if(resdata===680)
+          {
+              toast.info("user and password not match",{autoClose:2000});
+          }
+
+
         })
 
     }

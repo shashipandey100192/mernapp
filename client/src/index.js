@@ -10,6 +10,8 @@ import UserRegistorpage from './modules/users/usersauth/UserRegistorpage';
 import Welcomepage from './modules/dashboard/Welcomepage';
 import Mainpage from './modules/dashboard/Mainpage';
 import Employlistpage from './modules/dashboard/Employlistpage';
+import Profilepage from './modules/dashboard/Profilepage';
+import Usereditpage from './modules/dashboard/Usereditpage';
 
 
 
@@ -24,6 +26,8 @@ root.render(
         <Route path='dashboard' element={<Welcomepage/>}>
           <Route path='' element={<Mainpage/>}></Route>
           <Route path='employlistpage' element={<Employlistpage/>}></Route>
+          <Route path='employlistpage/profile/:id' element={<Profilepage/>}></Route>
+           <Route path='employlistpage/edituser/:id' element={<Usereditpage/>}></Route>
         
         
         </Route>

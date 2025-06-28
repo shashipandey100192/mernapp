@@ -65,10 +65,28 @@ myapp.get("/",(req,res)=>{
             else
             {
                 res.status(200).json({message:"user not find",status:420});
-            }
+            }   
+    });
 
-          
-    })
+
+
+    myapp.get("/singleuserrecord/:id", async(req,res)=>{
+        const {id} =req.params;
+            const singleuser = await mydatapattern.findById({_id:id});
+             res.status(200).json({message:"single user data",status:255,mydata:singleuser});
+             console.log(singleuser);
+    });
+
+
+     myapp.patch("/userupdate/:id", async(req,res)=>{
+        const {id} =req.params;
+            const singleuser = await mydatapattern.findByIdAndUpdate(id,req.body,{new:true});
+             res.status(200).json({message:"update user",status:251,mydata:singleuser});
+             console.log(singleuser);
+    });
+
+
+
 
 
 
