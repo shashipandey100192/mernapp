@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { MdOutlinePreview, MdDeleteForever } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function Employlistpage() {
@@ -15,7 +16,31 @@ function Employlistpage() {
 
     useEffect(() => {
         myallemp();
-    }, [])
+    }, []);
+
+
+
+
+
+    const deleterecord = (id) => {
+        if (window.confirm("do you wnat to delete")) 
+            {
+            axios.delete(`http://localhost:8700/deleterecord/${id}`).then((d) => {
+                console.log(d);
+                toast.success("record delete successfully");
+                myallemp();
+            });
+        }
+        else
+        {
+            toast.warn("Thanks");
+        }
+
+
+    }
+
+
+
 
     return (
         <div className='container-fluid'>
@@ -24,6 +49,7 @@ function Employlistpage() {
                     <p>List of Employee</p>
                 </div>
                 <div className='col-12'>
+                    <ToastContainer />
                     <table className="table table-bordered border-primary">
                         <thead>
                             <tr>
@@ -38,7 +64,7 @@ function Employlistpage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {allemp.map((emp,index) => {
+                            {allemp.map((emp, index) => {
                                 return (
                                     <tr>
                                         <th scope="row">{emp._id}</th>
@@ -53,7 +79,7 @@ function Employlistpage() {
                                         <td>
                                             <span class="badge text-bg-primary code-i"><MdOutlinePreview /></span>
                                             <span class="badge text-bg-warning ms-2 code-i"><FaUserEdit /></span>
-                                            <span class="badge text-bg-danger ms-2 code-i"><MdDeleteForever /></span>
+                                            <span class="badge text-bg-danger ms-2 code-i" onClick={() => deleterecord(emp._id)}><MdDeleteForever /></span>
 
                                         </td>
                                     </tr>

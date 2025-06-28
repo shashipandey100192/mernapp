@@ -40,6 +40,37 @@ myapp.get("/",(req,res)=>{
     });
 
 
+    myapp.delete("/deleterecord/:id", async(req,res)=>{
+        const {id} = req.params;
+        const removerecord = await mydatapattern.findByIdAndDelete({_id:id});
+        res.status(200).json({message:"selected data removed"});
+        console.log(removerecord);
+    });
+
+
+    myapp.post("/userlogin", async(req,res)=>{
+          const {email,pass} = req.body;
+          const userrecord = await mydatapattern.findOne({email:email});
+            if(userrecord)
+            {
+                if(userrecord.email==email && userrecord.pass==pass)
+                {
+                    res.status(200).json({message:"successfully login",status:240});
+                }
+                else
+                {
+                    res.status(200).json({message:"user and password not match",status:680});
+                } 
+            }
+            else
+            {
+                res.status(200).json({message:"user not find",status:420});
+            }
+
+          
+    })
+
+
 
 
 
