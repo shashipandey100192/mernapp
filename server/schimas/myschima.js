@@ -19,8 +19,12 @@ const mydatapattern = mongoose.Schema({
     profile:{
         type:String
     }
-
 });
+
+
+
+
+
 
 const myschimatype = mongoose.model('userregistor',mydatapattern);
 

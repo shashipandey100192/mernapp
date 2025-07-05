@@ -1,8 +1,13 @@
 'Access-Control-Allow-Origin'
 const express  = require('express');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const mydatapattern = require('../schimas/myschima');
 
 const myapp = express.Router();
+
+
+const JWT_SECRET = 'shashipandey';
 
 myapp.get("/",(req,res)=>{
         res.send("welcome to express js");
@@ -16,7 +21,9 @@ myapp.get("/",(req,res)=>{
     
 
     myapp.post("/registorpage", async (req,res)=>{
-        const {fullname,email,phone,dob,pass,profile} = req.body;
+            const {fullname,email,phone,dob,pass,profile} = req.body;
+
+             const hashedPassword = await bcrypt.hash(pass,10);
             if(fullname=="" || email=="")
             {
                 res.status(200).json({data:postdata,status:288,message:"faild registor"});
@@ -24,7 +31,7 @@ myapp.get("/",(req,res)=>{
             else
             {
             const postdata = new mydatapattern({
-            fullname,email,phone,dob,pass,profile
+            fullname,email,phone,dob,pass:hashedPassword,profile
         });
         await postdata.save();
         res.status(200).json({data:postdata,status:255,message:"data registor successfully"});
@@ -53,9 +60,12 @@ myapp.get("/",(req,res)=>{
           const userrecord = await mydatapattern.findOne({email:email});
             if(userrecord)
             {
-                if(userrecord.email==email && userrecord.pass==pass)
+                if(userrecord.email==email && bcrypt.compare(pass, userrecord.pass))
                 {
-                    res.status(200).json({message:"successfully login",status:240});
+                    const token = jwt.sign({ email: userrecord.email, pass: userrecord.pass }, JWT_SECRET, {
+                            expiresIn: '1h'
+                    });
+                    res.status(200).json({message:"successfully login",status:240,mytoken:token});
                 }
                 else
                 {
@@ -87,16 +97,5 @@ myapp.get("/",(req,res)=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports = myapp
+

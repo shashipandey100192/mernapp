@@ -7,7 +7,7 @@ function Sidebarpage() {
     return (
 
         <ul className="nav nav-pills flex-column mb-auto">
-            <li className="nav-item"> <Link to="#" className="nav-link active" aria-current="page">
+            <li className="nav-item"> <Link to="/dashboard" className="nav-link active" aria-current="page">
                 <FaHome/>Home
             </Link> </li> 
             <li> <Link to="#" className="nav-link bg-info text-primary mt-2">
