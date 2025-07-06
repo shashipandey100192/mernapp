@@ -1,9 +1,9 @@
 'Access-Control-Allow-Origin'
 const express  = require('express');
+const verifyToken = require('./medialware');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mydatapattern = require('../schimas/myschima');
-
 const myapp = express.Router();
 
 
@@ -40,7 +40,7 @@ myapp.get("/",(req,res)=>{
             }
     });
 
-    myapp.get("/allemplist", async(req,res)=>{
+    myapp.get("/allemplist", verifyToken, async(req,res)=>{
         const allemp = await mydatapattern.find();
          res.status(200).json({allemp:allemp,status:220,message:"all emp list"});
         console.log(allemp);

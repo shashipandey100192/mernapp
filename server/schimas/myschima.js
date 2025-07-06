@@ -30,3 +30,5 @@ const myschimatype = mongoose.model('userregistor',mydatapattern);
 
 module.exports = myschimatype;
 
+
+

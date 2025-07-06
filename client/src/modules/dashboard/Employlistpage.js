@@ -7,12 +7,17 @@ import { Link } from 'react-router-dom';
 
 
 function Employlistpage() {
+    const gettoken = localStorage.getItem('settoken');
     const [allemp, setallemp] = useState([]);
+
     const myallemp = () => {
-        axios.get('http://localhost:8700/allemplist').then((d) => {
+
+        axios.get('http://localhost:8700/allemplist',{headers: {Authorization: `Bearer ${gettoken}`}}).then((d) => {
             console.log(d.data.allemp);
             setallemp(d.data.allemp);
         })
+     
+
     }
 
     useEffect(() => {
@@ -76,8 +81,8 @@ function Employlistpage() {
                                         </td>
                                         <td>{emp.phone}</td>
                                         <td>
-                                            <Link to={'profile/'+emp._id} class="badge text-bg-primary code-i"><MdOutlinePreview /></Link>
-                                            <Link to={'edituser/'+emp._id} class="badge text-bg-warning ms-2 code-i"><FaUserEdit /></Link>
+                                            <Link to={'profile/' + emp._id} class="badge text-bg-primary code-i"><MdOutlinePreview /></Link>
+                                            <Link to={'edituser/' + emp._id} class="badge text-bg-warning ms-2 code-i"><FaUserEdit /></Link>
                                             <span class="badge text-bg-danger ms-2 code-i" onClick={() => deleterecord(emp._id)}><MdDeleteForever /></span>
 
                                         </td>

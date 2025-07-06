@@ -2,10 +2,10 @@ import React,{useEffect,useState} from 'react'
 import axios from 'axios';
 
 function Mainpage() {
-
+ const gettoken = localStorage.getItem('settoken');
     const [allemp, setallemp] = useState([]);
     const myallemp = () => {
-        axios.get('http://localhost:8700/allemplist').then((d) => {
+        axios.get('http://localhost:8700/allemplist',{headers: {Authorization: `Bearer ${gettoken}`}}).then((d) => {
             setallemp(d.data.allemp);
         })
     }

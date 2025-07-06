@@ -37,6 +37,7 @@ const myloginapi = async()=>{
           {
             //  alert("welcome");
               toast.success("Welcome to dashboard",{autoClose:2000});
+              localStorage.setItem("settoken",d.data.mytoken);
               setTimeout(()=>{
                 navigat("/dashboard");
               },2000)
