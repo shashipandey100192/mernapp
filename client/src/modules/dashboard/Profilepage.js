@@ -1,16 +1,23 @@
 import React,{useEffect,useState} from 'react'
 import { IoChevronBackCircle } from "react-icons/io5";
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams,useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { Apilist } from '../apis/Myapi';
 
 function Profilepage() {
     const {id} = useParams();
-
+    const mynav = useNavigate();
+    const gettoken = localStorage.getItem('settoken');
     const [singleuser, setsingleuser] = useState({});
     const singleuserdata = async () => {
-        await axios.get(`http://localhost:8700/singleuserrecord/${id}`).then((d) => {
+        await axios.get(`${Apilist}/singleuserrecord/${id}`,{headers: {Authorization: `Bearer ${gettoken}`}}).then((d) => {
             console.log(d.data.mydata);
             setsingleuser(d.data.mydata);
+        }).catch((err)=>{
+           if(err.status===420)
+           {
+            mynav("/userlogin");
+           }
         })
     }
 

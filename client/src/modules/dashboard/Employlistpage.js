@@ -3,18 +3,25 @@ import axios from 'axios';
 import { MdOutlinePreview, MdDeleteForever } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Apilist } from '../apis/Myapi';
 
 
 function Employlistpage() {
+    const mynav = useNavigate();
     const gettoken = localStorage.getItem('settoken');
     const [allemp, setallemp] = useState([]);
+        
 
     const myallemp = () => {
-
-        axios.get('http://localhost:8700/allemplist',{headers: {Authorization: `Bearer ${gettoken}`}}).then((d) => {
-            console.log(d.data.allemp);
+        axios.get(`${Apilist}/allemplist`,{headers: {Authorization: `Bearer ${gettoken}`}}).then((d) => {
+          
             setallemp(d.data.allemp);
+        }).catch((err)=>{
+           if(err.status===420)
+           {
+            mynav("/userlogin");
+           }
         })
      
 
@@ -30,7 +37,7 @@ function Employlistpage() {
 
     const deleterecord = (id) => {
         if (window.confirm("do you wnat to delete")) {
-            axios.delete(`http://localhost:8700/deleterecord/${id}`).then((d) => {
+            axios.delete(`${Apilist}/deleterecord/${id}`).then((d) => {
                 console.log(d);
                 toast.success("record delete successfully");
                 myallemp();

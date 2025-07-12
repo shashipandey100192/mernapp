@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Apilist } from '../apis/Myapi';
 
 function Usereditpage() {
     const navigation = useNavigate();
@@ -20,7 +21,7 @@ const [user,setuser]=useState({
 
 
     const singleuserdata = async () => {
-        await axios.get(`http://localhost:8700/singleuserrecord/${id}`).then((d) => {
+        await axios.get(`${Apilist}/singleuserrecord/${id}`).then((d) => {
             console.log(d.data.mydata);
             setuser(d.data.mydata);
         })
@@ -44,7 +45,7 @@ const [user,setuser]=useState({
 const updateuser = async ()=>{
  
       const {fullname,email,phone,pass,dob,profile}=user;
-    const postdata = await fetch(`http://localhost:8700/userupdate/${id}`, {
+    const postdata = await fetch(`${Apilist}/userupdate/${id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

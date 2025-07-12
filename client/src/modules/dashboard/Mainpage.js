@@ -1,11 +1,12 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState} from 'react';
+import { Apilist } from '../apis/Myapi';
 import axios from 'axios';
 
 function Mainpage() {
  const gettoken = localStorage.getItem('settoken');
     const [allemp, setallemp] = useState([]);
     const myallemp = () => {
-        axios.get('http://localhost:8700/allemplist',{headers: {Authorization: `Bearer ${gettoken}`}}).then((d) => {
+        axios.get(`${Apilist}/allemplist`,{headers: {Authorization: `Bearer ${gettoken}`}}).then((d) => {
             setallemp(d.data.allemp);
         })
     }

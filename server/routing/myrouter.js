@@ -47,7 +47,7 @@ myapp.get("/",(req,res)=>{
     });
 
 
-    myapp.delete("/deleterecord/:id", async(req,res)=>{
+    myapp.delete("/deleterecord/:id", verifyToken , async(req,res)=>{
         const {id} = req.params;
         const removerecord = await mydatapattern.findByIdAndDelete({_id:id});
         res.status(200).json({message:"selected data removed"});
@@ -80,7 +80,7 @@ myapp.get("/",(req,res)=>{
 
 
 
-    myapp.get("/singleuserrecord/:id", async(req,res)=>{
+    myapp.get("/singleuserrecord/:id", verifyToken, async(req,res)=>{
         const {id} =req.params;
             const singleuser = await mydatapattern.findById({_id:id});
              res.status(200).json({message:"single user data",status:255,mydata:singleuser});
@@ -88,7 +88,7 @@ myapp.get("/",(req,res)=>{
     });
 
 
-     myapp.patch("/userupdate/:id", async(req,res)=>{
+     myapp.patch("/userupdate/:id", verifyToken, async(req,res)=>{
         const {id} =req.params;
             const singleuser = await mydatapattern.findByIdAndUpdate(id,req.body,{new:true});
              res.status(200).json({message:"update user",status:251,mydata:singleuser});
