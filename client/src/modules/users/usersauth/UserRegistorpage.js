@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import {useNavigate} from 'react-router-dom'
+import { Apilist } from '../../apis/Myapi';
 
 
 function UserRegistorpage() {
@@ -39,7 +40,7 @@ const registor = async(req,res)=>{
     else
     {
   const {fullname,email,phone,pass,dob,profile}=user;
-const postdata = await fetch("http://localhost:8700/registorpage", {
+const postdata = await fetch(`${Apilist}/registorpage`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
